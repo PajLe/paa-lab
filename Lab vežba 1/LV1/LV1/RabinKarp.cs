@@ -17,7 +17,7 @@ namespace LV1
 
         public RabinKarp(string pattern, int R)
         {
-            if (String.IsNullOrEmpty(pattern) || R < 1)
+            if (string.IsNullOrEmpty(pattern) || R < 1)
                 throw new ArgumentException(/**/);
             this._pattern = pattern; 
             this.m = pattern.Length;
@@ -40,6 +40,8 @@ namespace LV1
 
         public int Search(string text)
         {
+            if (string.IsNullOrEmpty(text))
+                throw new ArgumentException(/**/);
             int n = text.Length;
             if (n < m) return n;
 

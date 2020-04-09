@@ -19,6 +19,18 @@ namespace LV1
 
             Console.WriteLine(r1.Search("31415926"));
             Console.WriteLine(r1.Search("5333141539"));
+
+            /****************************************************/
+
+            KnuthMorrisPratt k = new KnuthMorrisPratt("1415");
+
+            Console.WriteLine(k.Search("31415926"));
+            Console.WriteLine(k.Search("533339"));
+
+            KnuthMorrisPratt k1 = new KnuthMorrisPratt("1415");
+
+            Console.WriteLine(k1.Search("31415926"));
+            Console.WriteLine(k1.Search("5333141539"));
         }
     }
 }
