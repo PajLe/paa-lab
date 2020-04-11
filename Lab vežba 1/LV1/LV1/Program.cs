@@ -38,7 +38,11 @@ namespace LV1
             Console.WriteLine(SoundEx.SoundExCode("Rubin"));
             Console.WriteLine(SoundEx.SoundExCode("Ashcraft"));
             Console.WriteLine(SoundEx.SoundExCode("Tymczak"));
+            Console.WriteLine(SoundEx.SoundExCode("Eowyn"));
+            Console.WriteLine(SoundEx.SoundExCode("swx"));
+
             Console.WriteLine();
+
         }
     }
 }
