@@ -43,6 +43,13 @@ namespace LV1
 
             Console.WriteLine();
 
+            /****************************************************/
+
+            Console.WriteLine(Levenshtein.LevenshteinDistance("booiks", "bonksy")); // 3
+            Console.WriteLine(Levenshtein.LevenshteinDistance("sunday", "saturday")); // 3
+            Console.WriteLine(Levenshtein.LevenshteinDistance("gewagg", "zxcbbs")); // 6
+            Console.WriteLine();
+
         }
     }
 }
