@@ -19,7 +19,7 @@ namespace LV1
 
             Console.WriteLine(r1.Search("31415926"));
             Console.WriteLine(r1.Search("5333141539"));
-
+            Console.WriteLine();
             /****************************************************/
 
             KnuthMorrisPratt k = new KnuthMorrisPratt("1415");
@@ -31,6 +31,14 @@ namespace LV1
 
             Console.WriteLine(k1.Search("31415926"));
             Console.WriteLine(k1.Search("5333141539"));
+            Console.WriteLine();
+            /****************************************************/
+
+            Console.WriteLine(SoundEx.SoundExCode("Robert"));
+            Console.WriteLine(SoundEx.SoundExCode("Rubin"));
+            Console.WriteLine(SoundEx.SoundExCode("Ashcraft"));
+            Console.WriteLine(SoundEx.SoundExCode("Tymczak"));
+            Console.WriteLine();
         }
     }
 }
