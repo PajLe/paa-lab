@@ -15,6 +15,9 @@ namespace LV1
 
         public static int LevenshteinDistance(string word1, string word2)
         {
+            if (string.IsNullOrEmpty(word1) || string.IsNullOrEmpty(word2))
+                throw new ArgumentNullException();
+
             int m = word1.Length;
             int n = word2.Length;
             int[,] distances = new int[m + 1, n + 1];
