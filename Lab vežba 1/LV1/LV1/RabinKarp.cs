@@ -55,7 +55,7 @@ namespace LV1
                 /*
              ts+1 = 31415 -   3  * 10000 =   1415 * 10 + text[i] = 14156 
                  */
-                t = ((t - ((text[i - m] * h) % q)) * R + text[i]) % q;
+                t = ((t + q - (text[i - m] * h) % q) * R + text[i]) % q;
                 if (t == p && text.Substring(i - m + 1, m).Equals(_pattern))
                     return i - m + 1;
             }
@@ -90,7 +90,7 @@ namespace LV1
                     /*
                  ts+1 = 31415 -   3  * 10000 =   1415 * 10 + text[i] = 14156 
                      */
-                    t = ((t - ((text[i - m] * h) % q)) * R + text[i]) % q;
+                    t = ((t + q - (text[i - m] * h) % q) * R + text[i]) % q;
                     if (t == p && text.Substring(i - m + 1, m).Equals(_pattern))
                     {
                         sw.Write(st.Elapsed + " : ");
