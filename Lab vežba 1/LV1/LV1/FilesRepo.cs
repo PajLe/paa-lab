@@ -22,10 +22,33 @@ namespace LV1
             string[] words;
             using (StreamReader sw = new StreamReader(new FileStream(fileName, FileMode.Open)))
             {
+                string str = RemoveExtraWhiteSpaces(sw.ReadToEnd());
                 char[] delims = { ' ', '\n', ',', '.', ':', '\t' };
-                words = sw.ReadToEnd().Split(delims);
+                words = str.Split(delims);
             }
             return words;
+        }
+
+        private static string RemoveExtraWhiteSpaces(string str)
+        {
+            StringBuilder s = new StringBuilder();
+            string trimmed = str.Trim();
+            int wsCount = 0;
+            foreach (char c in trimmed)
+            {
+                if (char.IsWhiteSpace(c))
+                {
+                    if (wsCount == 0)
+                        s.Append(c);
+                    wsCount++;
+                }
+                else
+                {
+                    s.Append(c);
+                    wsCount = 0;
+                }
+            }
+            return s.ToString();
         }
 
         public static void GenerateHexFile(string fileName, int wordCount)

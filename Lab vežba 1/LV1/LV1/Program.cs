@@ -14,15 +14,20 @@ namespace LV1
             //FilesRepo.GenerateAsciiFile("100-ascii.txt", 100);
 
             KnuthMorrisPratt k = new KnuthMorrisPratt("and");
-            //k.SearchAll(FilesRepo.ReadAsString("../../../../testfiles/1k-princeton.txt"), "res.txt");
-            k.SearchAll("gand fdplopandlopolaffandl", "res.txt");
-            k.SearchAll("and", "res1.txt");
+            k.SearchAll(FilesRepo.ReadAsString("../../../../testfiles/1k-princeton.txt"), "res.txt");
+            //k.SearchAll("gand fdplopandlopolaffandl", "res.txt");
+            //k.SearchAll("and", "res1.txt");
             //k.Search(FilesRepo.ReadAsString("../../../../testfiles/1k-princeton.txt"));
             /*KnuthMorrisPratt k = new KnuthMorrisPratt("and");
 
             Console.WriteLine(k.Search("Everyone ann and and wants"));
             Console.WriteLine(k.Search("533339"));*/
 
+            string a = "   asdf    fdsa   ";
+            a = FilesRepo.RemoveExtraWhiteSpaces(a);
+            string[] b = a.Split(' ');
+            foreach (string st in b)
+                Console.WriteLine(st);
         }
     }
 }
