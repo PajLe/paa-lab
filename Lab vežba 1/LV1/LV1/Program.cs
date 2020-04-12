@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,24 +11,238 @@ namespace LV1
     {
         static void Main(string[] args)
         {
-            //FilesRepo.GenerateHexFile("../../../../testfiles/1.txt", 9);
-            //FilesRepo.GenerateAsciiFile("100-ascii.txt", 100);
+            string baseSourceRoute = "../../../../testfiles/";
+            string baseWriteRoute = "../../../../results/";
 
-            KnuthMorrisPratt k = new KnuthMorrisPratt("and");
-            k.SearchAll(FilesRepo.ReadAsString("../../../../testfiles/1k-princeton.txt"), "res.txt");
-            //k.SearchAll("gand fdplopandlopolaffandl", "res.txt");
-            //k.SearchAll("and", "res1.txt");
-            //k.Search(FilesRepo.ReadAsString("../../../../testfiles/1k-princeton.txt"));
-            /*KnuthMorrisPratt k = new KnuthMorrisPratt("and");
+            /* Patterns */
+            string a5 = "about";
+            string h5 = "D2E7A";
+            string a10 = " whenever ";
+            string h10 = "D7FF3A4021";
+            string a20 = " I thought I would ";
+            string h20 = "D7FF3A4021D7FF3A4021";
+            string a50 = "involuntarily pausing before coffin warehouses, and";
+            string h50 = "D7FF3A4021D7FF3A4021D7FF3A4021D7FF3A4021D7FF3A4021";
 
-            Console.WriteLine(k.Search("Everyone ann and and wants"));
-            Console.WriteLine(k.Search("533339"));*/
 
-            string a = "   asdf    fdsa   ";
-            a = FilesRepo.RemoveExtraWhiteSpaces(a);
-            string[] b = a.Split(' ');
-            foreach (string st in b)
-                Console.WriteLine(st);
+            #region Knuth - Morris - Pratt tests
+            string baseKmpWrite = baseWriteRoute + "kmp/";
+            #region Pattern 5
+            KnuthMorrisPratt kmp_a5 = new KnuthMorrisPratt(a5);
+            KnuthMorrisPratt kmp_h5 = new KnuthMorrisPratt(h5);
+
+            kmp_a5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-moby.txt"), baseKmpWrite + "kmp_a5_100.txt");
+            kmp_a5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-princeton.txt"), baseKmpWrite + "kmp_a5_1k.txt");
+            kmp_a5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "11k-manifesto.txt"), baseKmpWrite + "kmp_a5_10k.txt");
+            kmp_a5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "115k-mobydick.txt"), baseKmpWrite + "kmp_a5_100k.txt");
+
+            kmp_h5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-hex.txt"), baseKmpWrite + "kmp_h5_100.txt");
+            kmp_h5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-hex.txt"), baseKmpWrite + "kmp_h5_1k.txt");
+            kmp_h5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "10k-hex.txt"), baseKmpWrite + "kmp_h5_10k.txt");
+            kmp_h5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100k-hex.txt"), baseKmpWrite + "kmp_h5_100k.txt");
+            #endregion Pattern 5
+            #region Pattern 10
+            KnuthMorrisPratt kmp_a10 = new KnuthMorrisPratt(a10);
+            KnuthMorrisPratt kmp_h10 = new KnuthMorrisPratt(h10);
+
+            kmp_a10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-moby.txt"), baseKmpWrite + "kmp_a10_100.txt");
+            kmp_a10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-princeton.txt"), baseKmpWrite + "kmp_a10_1k.txt");
+            kmp_a10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "11k-manifesto.txt"), baseKmpWrite + "kmp_a10_10k.txt");
+            kmp_a10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "115k-mobydick.txt"), baseKmpWrite + "kmp_a10_100k.txt");
+
+            kmp_h10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-hex.txt"), baseKmpWrite + "kmp_h10_100.txt");
+            kmp_h10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-hex.txt"), baseKmpWrite + "kmp_h10_1k.txt");
+            kmp_h10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "10k-hex.txt"), baseKmpWrite + "kmp_h10_10k.txt");
+            kmp_h10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100k-hex.txt"), baseKmpWrite + "kmp_h10_100k.txt");
+            #endregion Pattern 10
+            #region Pattern 20
+            KnuthMorrisPratt kmp_a20 = new KnuthMorrisPratt(a20);
+            KnuthMorrisPratt kmp_h20 = new KnuthMorrisPratt(h20);
+
+            kmp_a20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-moby.txt"), baseKmpWrite + "kmp_a20_100.txt");
+            kmp_a20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-princeton.txt"), baseKmpWrite + "kmp_a20_1k.txt");
+            kmp_a20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "11k-manifesto.txt"), baseKmpWrite + "kmp_a20_10k.txt");
+            kmp_a20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "115k-mobydick.txt"), baseKmpWrite + "kmp_a20_100k.txt");
+
+            kmp_h20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-hex.txt"), baseKmpWrite + "kmp_h20_100.txt");
+            kmp_h20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-hex.txt"), baseKmpWrite + "kmp_h20_1k.txt");
+            kmp_h20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "10k-hex.txt"), baseKmpWrite + "kmp_h20_10k.txt");
+            kmp_h20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100k-hex.txt"), baseKmpWrite + "kmp_h20_100k.txt");
+            #endregion Pattern 20
+            #region Pattern 50
+            KnuthMorrisPratt kmp_a50 = new KnuthMorrisPratt(a50);
+            KnuthMorrisPratt kmp_h50 = new KnuthMorrisPratt(h50);
+
+            kmp_a50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-moby.txt"), baseKmpWrite + "kmp_a50_100.txt");
+            kmp_a50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-princeton.txt"), baseKmpWrite + "kmp_a50_1k.txt");
+            kmp_a50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "11k-manifesto.txt"), baseKmpWrite + "kmp_a50_10k.txt");
+            kmp_a50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "115k-mobydick.txt"), baseKmpWrite + "kmp_a50_100k.txt");
+
+            kmp_h50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-hex.txt"), baseKmpWrite + "kmp_h50_100.txt");
+            kmp_h50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-hex.txt"), baseKmpWrite + "kmp_h50_1k.txt");
+            kmp_h50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "10k-hex.txt"), baseKmpWrite + "kmp_h50_10k.txt");
+            kmp_h50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100k-hex.txt"), baseKmpWrite + "kmp_h50_100k.txt");
+            #endregion Pattern 50
+            #endregion Knuth - Morris - Pratt tests
+            
+            #region RabinKarp
+            string baseRkWrite = baseWriteRoute + "rk/";
+            #region Pattern 5
+            RabinKarp rk_a5 = new RabinKarp(a5, 256);
+            RabinKarp rk_h5 = new RabinKarp(h5, 16);
+
+            rk_a5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-moby.txt"), baseRkWrite + "rk_a5_100.txt");
+            rk_a5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-princeton.txt"), baseRkWrite + "rk_a5_1k.txt");
+            rk_a5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "11k-manifesto.txt"), baseRkWrite + "rk_a5_10k.txt");
+            rk_a5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "115k-mobydick.txt"), baseRkWrite + "rk_a5_100k.txt");
+
+            rk_h5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-hex.txt"), baseRkWrite + "rk_h5_100.txt");
+            rk_h5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-hex.txt"), baseRkWrite + "rk_h5_1k.txt");
+            rk_h5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "10k-hex.txt"), baseRkWrite + "rk_h5_10k.txt");
+            rk_h5.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100k-hex.txt"), baseRkWrite + "rk_h5_100k.txt");
+            #endregion Pattern 5
+            #region Pattern 10
+            RabinKarp rk_a10 = new RabinKarp(a10, 256);
+            RabinKarp rk_h10 = new RabinKarp(h10, 16);
+
+            rk_a10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-moby.txt"), baseRkWrite + "rk_a10_100.txt");
+            rk_a10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-princeton.txt"), baseRkWrite + "rk_a10_1k.txt");
+            rk_a10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "11k-manifesto.txt"), baseRkWrite + "rk_a10_10k.txt");
+            rk_a10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "115k-mobydick.txt"), baseRkWrite + "rk_a10_100k.txt");
+
+            rk_h10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-hex.txt"), baseRkWrite + "rk_h10_100.txt");
+            rk_h10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-hex.txt"), baseRkWrite + "rk_h10_1k.txt");
+            rk_h10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "10k-hex.txt"), baseRkWrite + "rk_h10_10k.txt");
+            rk_h10.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100k-hex.txt"), baseRkWrite + "rk_h10_100k.txt");
+            #endregion Pattern 10
+            #region Pattern 20
+            RabinKarp rk_a20 = new RabinKarp(a20, 256);
+            RabinKarp rk_h20 = new RabinKarp(h20, 16);
+
+            rk_a20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-moby.txt"), baseRkWrite + "rk_a20_100.txt");
+            rk_a20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-princeton.txt"), baseRkWrite + "rk_a20_1k.txt");
+            rk_a20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "11k-manifesto.txt"), baseRkWrite + "rk_a20_10k.txt");
+            rk_a20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "115k-mobydick.txt"), baseRkWrite + "rk_a20_100k.txt");
+
+            rk_h20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-hex.txt"), baseRkWrite + "rk_h20_100.txt");
+            rk_h20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-hex.txt"), baseRkWrite + "rk_h20_1k.txt");
+            rk_h20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "10k-hex.txt"), baseRkWrite + "rk_h20_10k.txt");
+            rk_h20.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100k-hex.txt"), baseRkWrite + "rk_h20_100k.txt");
+            #endregion Pattern 20
+            #region Pattern 50
+            RabinKarp rk_a50 = new RabinKarp(a50, 256);
+            RabinKarp rk_h50 = new RabinKarp(h50, 16);
+
+            rk_a50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-moby.txt"), baseRkWrite + "rk_a50_100.txt");
+            rk_a50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-princeton.txt"), baseRkWrite + "rk_a50_1k.txt");
+            rk_a50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "11k-manifesto.txt"), baseRkWrite + "rk_a50_10k.txt");
+            rk_a50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "115k-mobydick.txt"), baseRkWrite + "rk_a50_100k.txt");
+
+            rk_h50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100-hex.txt"), baseRkWrite + "rk_h50_100.txt");
+            rk_h50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "1k-hex.txt"), baseRkWrite + "rk_h50_1k.txt");
+            rk_h50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "10k-hex.txt"), baseRkWrite + "rk_h50_10k.txt");
+            rk_h50.SearchAll(FilesRepo.ReadAsString(baseSourceRoute + "100k-hex.txt"), baseRkWrite + "rk_h50_100k.txt");
+            #endregion Pattern 50
+            #endregion RabinKarp
+
+            #region Levenshtein
+            string baseLevenWrite = baseWriteRoute + "leven/";
+            #region Pattern 5
+            Levenshtein lev_a5 = new Levenshtein(a5);
+            Levenshtein lev_h5 = new Levenshtein(h5);
+
+            lev_a5.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "100-moby.txt"), baseLevenWrite + "lev_a5_100.txt");
+            lev_a5.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "1k-princeton.txt"), baseLevenWrite + "lev_a5_1k.txt");
+            lev_a5.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "11k-manifesto.txt"), baseLevenWrite + "lev_a5_10k.txt");
+            lev_a5.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "115k-mobydick.txt"), baseLevenWrite + "lev_a5_100k.txt");
+
+            lev_h5.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "100-hex.txt"), baseLevenWrite + "lev_h5_100.txt");
+            lev_h5.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "1k-hex.txt"), baseLevenWrite + "lev_h5_1k.txt");
+            lev_h5.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "10k-hex.txt"), baseLevenWrite + "lev_h5_10k.txt");
+            lev_h5.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "100k-hex.txt"), baseLevenWrite + "lev_h5_100k.txt");
+            #endregion Pattern 5
+            #region Pattern 10
+            Levenshtein lev_a10 = new Levenshtein(a10);
+            Levenshtein lev_h10 = new Levenshtein(h10);
+
+            lev_a10.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "100-moby.txt"), baseLevenWrite + "lev_a10_100.txt");
+            lev_a10.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "1k-princeton.txt"), baseLevenWrite + "lev_a10_1k.txt");
+            lev_a10.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "11k-manifesto.txt"), baseLevenWrite + "lev_a10_10k.txt");
+            lev_a10.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "115k-mobydick.txt"), baseLevenWrite + "lev_a10_100k.txt");
+
+            lev_h10.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "100-hex.txt"), baseLevenWrite + "lev_h10_100.txt");
+            lev_h10.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "1k-hex.txt"), baseLevenWrite + "lev_h10_1k.txt");
+            lev_h10.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "10k-hex.txt"), baseLevenWrite + "lev_h10_10k.txt");
+            lev_h10.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "100k-hex.txt"), baseLevenWrite + "lev_h10_100k.txt");
+            #endregion Pattern 10
+            #region Pattern 20
+            Levenshtein lev_a20 = new Levenshtein("akfmeidjfuwnvlxcopwq");
+            Levenshtein lev_h20 = new Levenshtein(h20);
+
+            lev_a20.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "100-moby.txt"), baseLevenWrite + "lev_a20_100.txt");
+            lev_a20.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "1k-princeton.txt"), baseLevenWrite + "lev_a20_1k.txt");
+            lev_a20.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "11k-manifesto.txt"), baseLevenWrite + "lev_a20_10k.txt");
+            lev_a20.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "115k-mobydick.txt"), baseLevenWrite + "lev_a20_100k.txt");
+
+            lev_h20.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "100-hex.txt"), baseLevenWrite + "lev_h20_100.txt");
+            lev_h20.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "1k-hex.txt"), baseLevenWrite + "lev_h20_1k.txt");
+            lev_h20.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "10k-hex.txt"), baseLevenWrite + "lev_h20_10k.txt");
+            lev_h20.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "100k-hex.txt"), baseLevenWrite + "lev_h20_100k.txt");
+            #endregion Pattern 20
+            #region Pattern 50
+            Levenshtein lev_a50 = new Levenshtein("akfmeidjfuwnvlxcopwqakfmeidjfuwnvlxcopwqxcopwqakfm");
+            Levenshtein lev_h50 = new Levenshtein(h50);
+
+            lev_a50.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "100-moby.txt"), baseLevenWrite + "lev_a50_100.txt");
+            lev_a50.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "1k-princeton.txt"), baseLevenWrite + "lev_a50_1k.txt");
+            lev_a50.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "11k-manifesto.txt"), baseLevenWrite + "lev_a50_10k.txt");
+            lev_a50.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "115k-mobydick.txt"), baseLevenWrite + "lev_a50_100k.txt");
+
+            lev_h50.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "100-hex.txt"), baseLevenWrite + "lev_h50_100.txt");
+            lev_h50.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "1k-hex.txt"), baseLevenWrite + "lev_h50_1k.txt");
+            lev_h50.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "10k-hex.txt"), baseLevenWrite + "lev_h50_10k.txt");
+            lev_h50.FindAllWithLD3(FilesRepo.ReadAsStringArray(baseSourceRoute + "100k-hex.txt"), baseLevenWrite + "lev_h50_100k.txt");
+            #endregion Pattern 50
+            #endregion Levenshtein
+
+            #region SoundEx
+            string baseSoundExWrite = baseWriteRoute + "sndx/";
+            #region Pattern 5
+            SoundEx sndx_a5 = new SoundEx(a5);
+
+            sndx_a5.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "100-moby.txt"), baseSoundExWrite + "sndx_a5_100.txt");
+            sndx_a5.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "1k-princeton.txt"), baseSoundExWrite + "sndx_a5_1k.txt");
+            sndx_a5.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "11k-manifesto.txt"), baseSoundExWrite + "sndx_a5_10k.txt");
+            sndx_a5.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "115k-mobydick.txt"), baseSoundExWrite + "sndx_a5_100k.txt");
+
+            #endregion Pattern 5
+            #region Pattern 10
+            SoundEx sndx_a10 = new SoundEx("xcopwqakfm");
+
+            sndx_a10.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "100-moby.txt"), baseSoundExWrite + "sndx_a10_100.txt");
+            sndx_a10.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "1k-princeton.txt"), baseSoundExWrite + "sndx_a10_1k.txt");
+            sndx_a10.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "11k-manifesto.txt"), baseSoundExWrite + "sndx_a10_10k.txt");
+            sndx_a10.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "115k-mobydick.txt"), baseSoundExWrite + "sndx_a10_100k.txt");
+
+            #endregion Pattern 10
+            #region Pattern 20
+            SoundEx sndx_a20 = new SoundEx("akfmeidjfuwnvlxcopwq");
+
+            sndx_a20.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "100-moby.txt"), baseSoundExWrite + "sndx_a20_100.txt");
+            sndx_a20.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "1k-princeton.txt"), baseSoundExWrite + "sndx_a20_1k.txt");
+            sndx_a20.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "11k-manifesto.txt"), baseSoundExWrite + "sndx_a20_10k.txt");
+            sndx_a20.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "115k-mobydick.txt"), baseSoundExWrite + "sndx_a20_100k.txt");
+            #endregion Pattern 20
+            #region Pattern 50
+            SoundEx sndx_a50 = new SoundEx("akfmeidjfuwnvlxcopwqakfmeidjfuwnvlxcopwqxcopwqakfm");
+
+            sndx_a50.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "100-moby.txt"), baseSoundExWrite + "sndx_a50_100.txt");
+            sndx_a50.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "1k-princeton.txt"), baseSoundExWrite + "sndx_a50_1k.txt");
+            sndx_a50.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "11k-manifesto.txt"), baseSoundExWrite + "sndx_a50_10k.txt");
+            sndx_a50.SearchAllEqualCodes(FilesRepo.ReadAsStringArray(baseSourceRoute + "115k-mobydick.txt"), baseSoundExWrite + "sndx_a50_100k.txt");
+
+            #endregion Pattern 50
+            #endregion SoundEx
         }
     }
 }
