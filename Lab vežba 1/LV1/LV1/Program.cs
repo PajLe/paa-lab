@@ -10,7 +10,9 @@ namespace LV1
     {
         static void Main(string[] args)
         {
-            /*RabinKarp r = new RabinKarp("1415", 256);
+            //FilesRepo.GenerateHexFile("../../../../testfiles/1.txt", 9);
+            //FilesRepo.GenerateAsciiFile("100-ascii.txt", 100);
+            RabinKarp r = new RabinKarp("1415", 256);
 
             Console.WriteLine(r.Search("31415926")); 
             Console.WriteLine(r.Search("533339"));
@@ -20,7 +22,7 @@ namespace LV1
             Console.WriteLine(r1.Search("31415926"));
             Console.WriteLine(r1.Search("5333141539"));
             Console.WriteLine();
-            ****************************************************
+            /****************************************************/
 
             KnuthMorrisPratt k = new KnuthMorrisPratt("1415");
 
@@ -32,7 +34,7 @@ namespace LV1
             Console.WriteLine(k1.Search("31415926"));
             Console.WriteLine(k1.Search("5333141539"));
             Console.WriteLine();
-            /****************************************************
+            /****************************************************/
 
             Console.WriteLine(SoundEx.SoundExCode("Robert"));
             Console.WriteLine(SoundEx.SoundExCode("Rubin"));
@@ -43,12 +45,12 @@ namespace LV1
 
             Console.WriteLine();
 
-            /****************************************************
+            /****************************************************/
 
             Console.WriteLine(Levenshtein.LevenshteinDistance("booiks", "bonksy")); // 3
             Console.WriteLine(Levenshtein.LevenshteinDistance("sunday", "saturday")); // 3
             Console.WriteLine(Levenshtein.LevenshteinDistance("gewagg", "zxcbbs")); // 6
-            Console.WriteLine();*/
+            Console.WriteLine();
 
         }
     }
