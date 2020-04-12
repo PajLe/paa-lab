@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,15 +10,22 @@ namespace LV1
 {
     class Levenshtein
     {
-        public Levenshtein()
-        {
+        private readonly string _pattern;
 
+        public Levenshtein(string pattern)
+        {
+            if (string.IsNullOrEmpty(pattern))
+                throw new ArgumentNullException();
+
+            this._pattern = pattern;
         }
 
         public static int LevenshteinDistance(string word1, string word2)
         {
             if (string.IsNullOrEmpty(word1) || string.IsNullOrEmpty(word2))
                 throw new ArgumentNullException();
+            // word1 = word1.ToLower();
+            // word2 = word2.ToLower();
 
             int m = word1.Length;
             int n = word2.Length;
@@ -58,6 +67,27 @@ namespace LV1
         private static int Min3(int a, int b, int c)
         {
             return Math.Min(a, Math.Min(b, c));
+        }
+
+        public void FindAllWithLD3(string[] words, string writeToFile)
+        {
+            using (StreamWriter sw = new StreamWriter(new FileStream(writeToFile, FileMode.Create)))
+            {
+                Stopwatch t = new Stopwatch();
+                t.Start();
+                Console.WriteLine("Start Levenshtein - " + t.Elapsed);
+                foreach (string word in words)
+                {
+                    int d;
+                    if ((d = LevenshteinDistance(_pattern, word)) <= 3)
+                    {
+                        sw.Write(t.Elapsed + " : ");
+                        sw.WriteLine(_pattern + " - " + word + ",  " + d);
+                    }
+                }
+                Console.WriteLine("Stop Levenshtein - " + t.Elapsed);
+                t.Stop();
+            }
         }
     }
 }
