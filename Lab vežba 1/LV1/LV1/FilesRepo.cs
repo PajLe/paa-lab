@@ -23,8 +23,8 @@ namespace LV1
             using (StreamReader sw = new StreamReader(new FileStream(fileName, FileMode.Open)))
             {
                 string str = RemoveExtraWhiteSpaces(sw.ReadToEnd());
-                char[] delims = { ' ', '\n', ',', '.', ':', '\t' };
-                words = str.Split(delims);
+                char[] delims = { ' ', '\n', ',', '.', ':', '\t', '-', '\"', ')', '(', '?' };
+                words = str.Split(delims, StringSplitOptions.RemoveEmptyEntries);
             }
             return words;
         }
@@ -32,9 +32,10 @@ namespace LV1
         private static string RemoveExtraWhiteSpaces(string str)
         {
             StringBuilder s = new StringBuilder();
-            string trimmed = str.Trim();
+            str.Trim();
             int wsCount = 0;
-            foreach (char c in trimmed)
+            int lfCount = 0;
+            foreach (char c in str)
             {
                 if (char.IsWhiteSpace(c))
                 {
@@ -42,10 +43,16 @@ namespace LV1
                         s.Append(c);
                     wsCount++;
                 }
-                else
+                else if (c == '\n' || c == '\r')
+                {
+                    if (lfCount == 0)
+                        s.Append(c);
+                    lfCount++;
+                } else
                 {
                     s.Append(c);
                     wsCount = 0;
+                    lfCount = 0;
                 }
             }
             return s.ToString();
