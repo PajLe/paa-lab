@@ -1,0 +1,5 @@
+00:00:00.0085594 : about - about - A130
+00:00:00.0130298 : about - about - A130
+00:00:00.0130611 : about - about - A130
+00:00:00.0139079 : about - about - A130
+00:00:00.0139225 : about - about - A130

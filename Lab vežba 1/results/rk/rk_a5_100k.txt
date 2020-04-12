@@ -1,0 +1,239 @@
+00:00:00.0015067 : 115 : bp 
+
+
+about
+Ste
+00:00:00.0025515 : 6675 : when 
+about sun
+00:00:00.0036588 : 20562 : e are about to 
+00:00:00.0055557 : 24919 :  sail about a l
+00:00:00.0055831 : 25089 :  grim about the
+00:00:00.0058916 : 30367 :  hazy about the
+00:00:00.0059722 : 31926 : r 
+me about som
+00:00:00.0060348 : 33067 : r me 
+about how
+00:00:00.0060412 : 33109 : ch me about, 
+I
+00:00:00.0062357 : 36050 :  
+set about per
+00:00:00.0063829 : 38123 : thing about eve
+00:00:00.0065833 : 40848 : oving about in 
+00:00:00.0067755 : 41825 : t was about the
+00:00:00.0069647 : 43140 :  
+did about poo
+00:00:00.0073172 : 47007 : imity about it 
+00:00:00.0075616 : 50964 : hered about a t
+00:00:00.0076090 : 51710 : ther 
+about a s
+00:00:00.0078100 : 55070 : ering about mos
+00:00:00.0078980 : 56502 : s now about nin
+00:00:00.0079874 : 57968 :  mind about tha
+00:00:00.0080495 : 58964 : went 
+about his
+00:00:00.0080671 : 59202 : m was about fou
+00:00:00.0082773 : 62726 : . And about thi
+00:00:00.0083125 : 63271 : story about sel
+00:00:00.0083854 : 64075 : heads about the
+00:00:00.0084396 : 64935 :  kick about in 
+00:00:00.0084533 : 65112 : wling about one
+00:00:00.0086264 : 67941 : nking about thi
+00:00:00.0086513 : 68308 :  said about the
+00:00:00.0086748 : 68659 : olled about a 
+
+00:00:00.0087936 : 70640 : round about, an
+00:00:00.0088855 : 72138 : unded about the
+00:00:00.0089569 : 73298 :  went about som
+00:00:00.0090302 : 74486 : takes about a d
+00:00:00.0090835 : 75339 : tched about in 
+00:00:00.0091735 : 76820 : shing about me 
+00:00:00.0091940 : 77120 : ashes about 
+me
+00:00:00.0092590 : 78173 : aking about, th
+00:00:00.0093094 : 78974 : rning about day
+00:00:00.0096653 : 84268 : thing about me 
+00:00:00.0098936 : 86571 : mping about the
+00:00:00.0099352 : 87024 : aving about wit
+00:00:00.0100970 : 88969 : hable about him
+00:00:00.0102705 : 91077 : ories about wha
+00:00:00.0104984 : 93844 : 
+reel about the
+00:00:00.0113676 : 104371 : ities about him
+00:00:00.0122750 : 111503 : ea is about us 
+00:00:00.0123459 : 112672 : kulks about the
+00:00:00.0127018 : 117608 : thing about the
+00:00:00.0132210 : 126379 : apped about his
+00:00:00.0134776 : 130657 : arred about the
+00:00:00.0135070 : 131099 : ring 
+about the
+00:00:00.0137602 : 135272 : could about the
+00:00:00.0139304 : 136717 :  went about his
+00:00:00.0142212 : 141910 : drawn about our
+00:00:00.0142731 : 142799 :  wild about his
+00:00:00.0144408 : 145818 :  ways about him
+00:00:00.0144750 : 146398 :  sail about, an
+00:00:00.0146212 : 148054 : ories about him
+00:00:00.0147013 : 149427 : story about the
+00:00:00.0147346 : 149629 : orant about 
+th
+00:00:00.0152215 : 158521 : rried about lik
+00:00:00.0152425 : 158851 : lted 
+about, ev
+00:00:00.0154660 : 162906 : n 
+us about kee
+00:00:00.0155002 : 163480 : ating about a l
+00:00:00.0156698 : 165348 :  that about cod
+00:00:00.0157828 : 167256 : aying about cho
+00:00:00.0158473 : 168321 : g was about to 
+00:00:00.0159969 : 170780 : o set about thi
+00:00:00.0160575 : 171807 : pryed about the
+00:00:00.0161118 : 172353 :  look about her
+00:00:00.0162408 : 174475 : ooked about the
+00:00:00.0163440 : 175841 : haps, about 
+th
+00:00:00.0163714 : 176251 : cles 
+about the
+00:00:00.0164002 : 176719 : t all about wha
+00:00:00.0165933 : 179563 :  said about the
+00:00:00.0166085 : 179688 : 
+hint about wha
+00:00:00.0168427 : 182043 : wning about the
+00:00:00.0170143 : 185102 : tency about wor
+00:00:00.0172968 : 190202 : e on 
+about pri
+00:00:00.0173105 : 190412 : ld be about the
+00:00:00.0173320 : 190612 : stful about rec
+00:00:00.0173575 : 191051 : o say about 
+sh
+00:00:00.0174812 : 193472 : ring 
+about the
+00:00:00.0174909 : 193608 : o lug about tha
+00:00:00.0176562 : 196052 :  mind about tha
+00:00:00.0177075 : 196989 :  much about his
+00:00:00.0178336 : 199466 : 
+that about, as
+00:00:00.0179588 : 201911 : tions about Yoj
+00:00:00.0179661 : 201997 : e was about, 
+I
+00:00:00.0179813 : 202243 : acked about the
+00:00:00.0181182 : 204941 : lking about pry
+00:00:00.0181817 : 206168 : s one about a m
+00:00:00.0184633 : 211699 : olish about thi
+00:00:00.0184814 : 211994 : ions 
+about the
+00:00:00.0185293 : 212548 : ed by about two
+00:00:00.0185934 : 213311 : marks about rel
+00:00:00.0186159 : 213672 :  more about the
+00:00:00.0187381 : 216055 : thing about Dea
+00:00:00.0188139 : 217138 :  mind about 
+th
+00:00:00.0188276 : 217341 : es it about rig
+00:00:00.0189977 : 220691 : tened about his
+00:00:00.0190564 : 221791 : hink 
+about Dea
+00:00:00.0191385 : 223383 : there about you
+00:00:00.0191556 : 223672 : ering about, sh
+00:00:00.0191747 : 223995 : lking about som
+00:00:00.0192148 : 224735 :  know about him
+00:00:00.0192192 : 224776 : l you about him
+00:00:00.0192250 : 224839 : thing about him
+00:00:00.0192416 : 225113 : thing about tha
+00:00:00.0192509 : 225236 : thing about tha
+00:00:00.0192583 : 225327 : thing about tha
+00:00:00.0192622 : 225352 : thing about the
+00:00:00.0192676 : 225408 : thing about his
+00:00:00.0192759 : 225518 :  word about the
+00:00:00.0194470 : 225692 :  tell about the
+00:00:00.0194797 : 225950 : s is 
+about, I 
+00:00:00.0194993 : 226174 : w all about 
+th
+00:00:00.0195594 : 226211 : ' All about it,
+00:00:00.0199393 : 232509 : ustle about hit
+00:00:00.0199740 : 233079 : rried about 
+wi
+00:00:00.0200019 : 233524 : asked about Cap
+00:00:00.0203431 : 239774 : ences about 
+hi
+00:00:00.0206105 : 244264 : horus about the
+00:00:00.0208457 : 248870 :  look about him
+00:00:00.0229548 : 272640 : cular about the
+00:00:00.0229792 : 272729 : er is about the
+00:00:00.0230296 : 273419 : here, about som
+00:00:00.0230560 : 273767 : bring about tha
+00:00:00.0231180 : 274761 : le go about wit
+00:00:00.0234182 : 279668 : moved about the
+00:00:00.0236333 : 283249 :  look about me 
+00:00:00.0237389 : 284988 : lness about 
+hi
+00:00:00.0239017 : 287804 : bored about hal
+00:00:00.0242459 : 293385 : ingly about a g
+00:00:00.0243383 : 294931 : he 's about the
+00:00:00.0244224 : 296233 : at 's about the
+00:00:00.0246976 : 300744 :  am I about ? "
+00:00:00.0248482 : 303168 : s hereabouts ! 
+00:00:00.0248619 : 303318 : queer about tha
+00:00:00.0271206 : 328337 :  was 
+about the
+00:00:00.0285046 : 341662 : unges about the
+00:00:00.0291255 : 349156 : ively about it,
+00:00:00.0301507 : 360438 : ossed about by 
+00:00:00.0301654 : 360476 : feels about as 
+00:00:00.0301967 : 360809 : move 
+about in 
+00:00:00.0313348 : 372653 : rders about a w
+00:00:00.0323360 : 376915 :  face about, Mr
+00:00:00.0356111 : 437912 : sions about to 
+00:00:00.0358883 : 443062 : pter 
+about whi
+00:00:00.0369908 : 464792 : sness about suc
+00:00:00.0369976 : 464844 : ICK 
+
+about Rin
+00:00:00.0376048 : 476869 : ays, 'about fou
+00:00:00.0376116 : 476918 :  were about one
+00:00:00.0376571 : 477757 : where about 
+th
+00:00:00.0381934 : 488406 : nging about the
+00:00:00.0383763 : 491950 : beam, about two
+00:00:00.0387644 : 493642 : s men about to 
+00:00:00.0396239 : 505685 : tched about by 
+00:00:00.0400497 : 509843 : rying about ? 
+
+00:00:00.0413751 : 526503 : ssing about 
+th
+00:00:00.0426081 : 543380 :  talk about. 
+
+
+00:00:00.0427768 : 546239 : love 
+about it 
+00:00:00.0428305 : 547121 : stuff about 'sp
+00:00:00.0428579 : 547543 : glory about it.
+00:00:00.0429249 : 548665 :  item about Gam
+00:00:00.0429620 : 549253 : eeled about the
+00:00:00.0430828 : 551316 : ound 
+about the
+00:00:00.0431307 : 552108 : gedy 
+about to 
+00:00:00.0432265 : 553738 :  I am about reh
+00:00:00.0436548 : 560584 : itude about 
+th
+00:00:00.0439227 : 565248 : order about the
+00:00:00.0441452 : 569117 : ; hereabouts in
+00:00:00.0444453 : 574298 : ewing about 
+th
+00:00:00.0526988 : 576933 :  word about not
+00:00:00.0527677 : 577941 : ially about the
+00:00:00.0531441 : 584628 : thing about 
+hi
+00:00:00.0554077 : 595754 :  were about to 
+00:00:00.0557352 : 601906 : where about the
+00:00:00.0558301 : 603662 : thing about it,
+00:00:00.0559885 : 606422 : e are about as 
+00:00:00.0560545 : 607652 : hings about thi
+00:00:00.0563224 : 612262 : tered about the
+00:00:00.0564862 : 615174 : , is 
+about tan
+00:00:00.0565918 : 616925 : y, is about giv
+00:00:00.0581469 : 642699 : tines about 
+th

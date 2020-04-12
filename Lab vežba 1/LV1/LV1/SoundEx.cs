@@ -29,7 +29,7 @@ namespace LV1
         {
             if (string.IsNullOrEmpty(word))
                 throw new ArgumentNullException();
-
+            word.Trim();
             word = word.ToUpper();
             if (!IsComprisedOfAlphabet(word))
                 throw new ArgumentException("string contains invalid characters for SoundEx");

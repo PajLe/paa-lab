@@ -66,7 +66,7 @@ namespace LV1
             {
                 Stopwatch t = new Stopwatch();
                 t.Start();
-                Console.WriteLine("Start - " + t.Elapsed);
+                Console.WriteLine("Start KMP - " + t.Elapsed);
                 int n = text.Length;    // text size
                 int q = 0;              // number of characters matched
                 for (int i = 0; i < n; i++)
@@ -87,7 +87,7 @@ namespace LV1
                         q = pi[q - 1];
                     }
                 }
-                Console.WriteLine("Stop - " + t.Elapsed);
+                Console.WriteLine("Stop KMP - " + t.Elapsed);
                 t.Stop();
             }
         }
