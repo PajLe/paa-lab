@@ -23,7 +23,7 @@ namespace LV1
             using (StreamReader sw = new StreamReader(new FileStream(fileName, FileMode.Open)))
             {
                 string str = RemoveExtraWhiteSpaces(sw.ReadToEnd());
-                char[] delims = { ' ', '\n', ',', '.', ':', '\t', '-', '\"', ')', '(', '?' };
+                char[] delims = { ' ', '\n', '\r', ',', '.', ':', '\t', '-', '\"', ')', '(', '?', '!', '\''};
                 words = str.Split(delims, StringSplitOptions.RemoveEmptyEntries);
             }
             return words;
