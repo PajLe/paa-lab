@@ -1,7 +1,7 @@
-00:00:00.0102016 : 140494 : t once I thought I would open
-00:00:00.0178063 : 244048 : gaged  I thought I would 
+00:00:00.0024552 : 140494 : t once I thought I would open
+00:00:00.0040211 : 244048 : gaged  I thought I would 
 in 
-00:00:00.0247426 : 643327 : L. I.  I thought I would 
+00:00:00.0099826 : 643327 : L. I.  I thought I would 
 
 
 

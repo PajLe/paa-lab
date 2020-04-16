@@ -1,9 +1,9 @@
-00:00:00.0442156 : 7048 : bring about.
+00:00:00.0004561 : 7048 : bring about.
 It
-00:00:00.0450921 : 18077 : smen aaboutnd p
-00:00:00.0453806 : 35081 :  talk about
+00:00:00.0006169 : 18077 : smen aaboutnd p
+00:00:00.0008496 : 35081 :  talk about
 fre
-00:00:00.0453869 : 35163 : oisie about fre
-00:00:00.0454632 : 40009 : -trap about the
-00:00:00.0454676 : 40041 : tion,
+00:00:00.0008550 : 35163 : oisie about fre
+00:00:00.0009196 : 40009 : -trap about the
+00:00:00.0009230 : 40041 : tion,
 about the

@@ -1,4 +1,4 @@
-00:00:00.0016138 : 409 : mouth; whenever it i
-00:00:00.0016358 : 511 :  soul; whenever I fi
-00:00:00.0016490 : 575 :  coffi whenever n wa
-00:00:00.0016573 : 664 : cially whenever myin
+00:00:00.0012124 : 409 : mouth; whenever it i
+00:00:00.0012500 : 511 :  soul; whenever I fi
+00:00:00.0012613 : 575 :  coffi whenever n wa
+00:00:00.0012706 : 664 : cially whenever myin

@@ -1,14 +1,14 @@
-00:00:00.0013048 : 724 : .. 36  whenever 
+00:00:00.0003568 : 724 : .. 36  whenever 
 
 VI
-00:00:00.0034124 : 25106 : outh ; whenever it i
-00:00:00.0034364 : 25160 : soul ; whenever I fi
-00:00:00.0252819 : 275264 : y them whenever 
+00:00:00.0020865 : 25106 : outh ; whenever it i
+00:00:00.0021071 : 25160 : soul ; whenever I fi
+00:00:00.0150964 : 275264 : y them whenever 
 enc
-00:00:00.0258079 : 283224 : t, yet whenever I ca
-00:00:00.0305115 : 367570 :  teeth whenever thou
-00:00:00.0526684 : 532220 : e that whenever 
+00:00:00.0155554 : 283224 : t, yet whenever I ca
+00:00:00.0199124 : 367570 :  teeth whenever thou
+00:00:00.0287950 : 532220 : e that whenever 
 and
-00:00:00.0614225 : 643462 : rman 
+00:00:00.0349628 : 643462 : rman 
  whenever 
 238

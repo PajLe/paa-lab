@@ -1,2 +1,2 @@
-00:00:00.0164408 : 181 : shore, I thought I would sail
-00:00:00.0164628 : 328 : e circ I thought I would ulat
+00:00:00.0012833 : 181 : shore, I thought I would sail
+00:00:00.0012994 : 328 : e circ I thought I would ulat
