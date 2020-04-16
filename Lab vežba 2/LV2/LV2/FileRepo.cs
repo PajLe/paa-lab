@@ -15,7 +15,7 @@ namespace LV2
             {
                 Random r = new Random();
                 for (int i = 0; i < numOfElements; i++)
-                    sw.WriteLine(r.Next(100001));
+                    sw.WriteLine(r.Next(10001));
             }
         }
 
