@@ -1,6 +1,6 @@
-# Laboratorijske vežbe iz predmeta "Projektovanje i analiza algoritama"
+# Lab. vežbe - Projektovanje i analiza algoritama
 
-##Poređenje stringova
+## Poređenje stringova
 
 Implementirati Rabin-Karp i Knut-Moris-Prat algoritme za traženje podstringova, kao i SoundEx i Levenstein algoritme za traženje stringova po sličnosti.
 
@@ -20,3 +20,11 @@ Uporediti performanse algoritama za sve navedene slučajeve po vremenu izvršenj
 
 
 Potrebno je predati urađeni zadatak zajedno sa svim pomoćnim fajlovima u zadatak Laboratorijska vežba 1 u okviru sekcije Laboratorijske vežbe, najkasnije do ponedeljka 13. aprila, u 10h. Odbrana laboratorijske vežbe biće održana u utorak 14. aprila u 17h, koriščenjem platforme MS Teams.
+
+## Poređenje performansi algoritama za sortiranje
+
+Implementirati po priloženoj tabeli po tri algoritma za sortiranje i uporediti njihove performanse po vremenu izvršenja i zauzetosti memorije.
+
+Za sortiranje uzeti cele brojeve iz opsega 0 do 10000.
+
+Sortirati slučajno generisane nizove od 100, 1000, 10k, 100k, 1M, 10M i 100M elemenata.
