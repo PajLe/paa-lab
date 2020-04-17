@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="BubbleSort.cs" />
     <Compile Include="FileRepo.cs" />
+    <Compile Include="HeapSort.cs" />
+    <Compile Include="LSDRadixSort.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
