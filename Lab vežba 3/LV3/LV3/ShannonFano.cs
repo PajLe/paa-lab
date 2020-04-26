@@ -75,6 +75,7 @@ namespace LV3
                     while (br.BaseStream.Position != br.BaseStream.Length)
                     {
                         char c = br.ReadChar();
+                        if (!_charCodePair.ContainsKey(c)) continue;
                         foreach (char ch in _charCodePair[c])
                         {
                             string s;
