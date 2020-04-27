@@ -14,6 +14,7 @@ namespace LV3
         private static readonly int L = 65536;        // number of codewords = 2^W
         private static readonly uint W = 16;          // codeword width
         private string _fileToDecode;                 // encoded file's name (file is to be decoded)
+        private int _inputLength;
 
         public LZW(string inputFileName, string outputFileName)
         {
@@ -25,17 +26,19 @@ namespace LV3
                 {
                     TST<uint> st = new TST<uint>();
                     string input = sr.ReadToEnd();
+                    _inputLength = input.Length;
+
                     for (uint i = 0; i < R; i++)
                         st.put("" + (char)i, i);
                     uint code = R + 1;  // R is codeword for EOF
 
                     int inputStartIndex = 0;
-                    while(input.Length > inputStartIndex)
+                    while(_inputLength > inputStartIndex)
                     {
                         string s = st.longestPrefixOf(input, inputStartIndex); // Find max prefix match s.
                         bw.WriteIntBits(st.get(s), W); // Print s's code.
                         int t = s.Length;
-                        if (t < input.Length && code < L) 
+                        if (t < _inputLength - inputStartIndex && code < L) 
                             st.put(input.Substring(inputStartIndex, t + 1), code++); // Add s to symbol table.
 
                         inputStartIndex += t; // instead of the slow substring operation
@@ -73,6 +76,17 @@ namespace LV3
                         if (i == codeword) s = val + val[0];   // special case hack
                         if (i < L) st[i++] = val + s[0];
                         val = s;
+                    }
+
+                    if (_inputLength < 1000)
+                    {
+                        for (int ind = 0; ind < st.Length; ind++)
+                        {
+                            if (ind > 256 && string.IsNullOrEmpty(st[ind]))
+                                break;
+
+                            Console.WriteLine($"[{st[ind]}, {ind}]");
+                        }
                     }
                 }
             }
