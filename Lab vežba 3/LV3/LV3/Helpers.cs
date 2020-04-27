@@ -49,6 +49,7 @@ namespace LV3
     {
         private bool[] curByte = new bool[8];
         private byte curBitIndx = 0;
+        private System.Collections.BitArray ba;
 
         public BinaryWriter(Stream s) : base(s) { }
 
@@ -69,6 +70,17 @@ namespace LV3
                 this.curBitIndx = 0;
                 this.curByte = new bool[8];
             }
+        }
+
+        public void WriteIntBits(uint value, uint numOfBits)
+        {
+            ba = new BitArray(BitConverter.GetBytes(value));
+            for (sbyte i = (sbyte)(numOfBits - 1); i >= 0; i--)
+            {
+                //Console.WriteLine(ba[i]);
+                this.Write(ba[i]);
+            }
+            ba = null;
         }
 
         private static byte ConvertToByte(bool[] bools)
@@ -100,6 +112,18 @@ namespace LV3
             ba = new BitArray(new byte[] { base.ReadByte() });
             ba.CopyTo(curByte, 0);
             ba = null;
+        }
+
+        public uint ReadUintBits(uint numOfBits)
+        {
+            uint num = 0;
+            for (int i = 0; i < numOfBits; i++)
+            {
+                num <<= 1;
+                bool bit = ReadBoolean();
+                if (bit) num |= 1;
+            }
+            return num;
         }
 
         public override bool ReadBoolean()
@@ -148,10 +172,10 @@ namespace LV3
 
         public String longestPrefixOf(String query)
         {
-            if (query == null)
+            /*if (query == null)
                 throw new ArgumentNullException("calls longestPrefixOf() with null argument");
             
-            if (query.Length == 0) return null;
+            if (query.Length == 0) return null;*/
             int length = 0;
             Node<Value> x = root;
             int i = 0;
