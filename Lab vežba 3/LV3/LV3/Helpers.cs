@@ -194,6 +194,30 @@ namespace LV3
             return query.Substring(0, length);
         }
 
+        public String longestPrefixOf(String query, int startIndex)
+        {
+            /*if (query == null)
+                throw new ArgumentNullException("calls longestPrefixOf() with null argument");
+            
+            if (query.Length == 0) return null;*/
+            int length = 0;
+            Node<Value> x = root;
+            int i = startIndex;
+            while (x != null && i < query.Length)
+            {
+                char c = query[i];
+                if (c < x.c) x = x.left;
+                else if (c > x.c) x = x.right;
+                else
+                {
+                    i++;
+                    if (x.val != null) length = i - startIndex;
+                    x = x.mid;
+                }
+            }
+            return query.Substring(startIndex, length);
+        }
+
         public void put(String key, Value val)
         {
             if (key == null)
