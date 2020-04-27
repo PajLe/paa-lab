@@ -17,7 +17,7 @@ namespace LV3
         private Dictionary<char, string> _charCodePair;
         private string _fileToDecode;
 
-        public ShannonFano(string inputFileName, string outputFileName)
+        public ShannonFano(string inputFileName, string outputFileName) // total O(num of chars)
         {
             if (!File.Exists(inputFileName))
                 throw new ArgumentException("File " + inputFileName + "doesn't exist");
@@ -30,7 +30,7 @@ namespace LV3
 
             FillDictionaryWithOccurrences(inputFileName);
             _sortedCharsByOccurrence = _charOccurrencePair.ToList();
-            _sortedCharsByOccurrence.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
+            _sortedCharsByOccurrence.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value)); // O(nlogn) - n is number of different chars
             
             Compress(0, _sortedCharsByOccurrence.Count - 1, _sumOfOccurrences, "", _decodeTree.Root);
             WriteEncoded(inputFileName, outputFileName);
@@ -38,7 +38,7 @@ namespace LV3
 
         public void Decode()
         {
-            using (BinaryReader br = new BinaryReader(File.Open(_fileToDecode, FileMode.Open)))
+            using (BinaryReader br = new BinaryReader(File.Open(_fileToDecode, FileMode.Open))) // O(num of encoded chars)
             {
                 using (StreamWriter sw = new StreamWriter(File.Open(_fileToDecode.Substring(0,_fileToDecode.Length - 4) + "-decoded.txt", FileMode.Create)))
                 {
@@ -61,7 +61,7 @@ namespace LV3
             }
         }
 
-        private void WriteEncoded(string inputFileName, string outputFileName)
+        private void WriteEncoded(string inputFileName, string outputFileName) // O(num of chars) + ??code for char??
         {
             using (BinaryReader br = new BinaryReader(File.Open(inputFileName, FileMode.Open)))
             {
@@ -89,7 +89,7 @@ namespace LV3
             }
         }
 
-        private void Compress(int leftIndex, int rightIndex, int sumOfOccurrences, string code, SFNode node)
+        private void Compress(int leftIndex, int rightIndex, int sumOfOccurrences, string code, SFNode node) // O(number of nodes) == O(codes concatenated)
         {
             if (leftIndex == rightIndex) // one character
             {
@@ -135,7 +135,7 @@ namespace LV3
             return i;
         }
 
-        private void FillDictionaryWithOccurrences(string inputFileName)
+        private void FillDictionaryWithOccurrences(string inputFileName) // O(num of characters)
         {
             using (BinaryReader br = new BinaryReader(File.Open(inputFileName, FileMode.Open)))
             {
@@ -151,79 +151,6 @@ namespace LV3
                         _charCodePair.Add(c, "");
                     }
                 }
-            }
-        }
-
-        private class BinaryWriter : System.IO.BinaryWriter
-        {
-            private bool[] curByte = new bool[8];
-            private byte curBitIndx = 0;
-
-            public BinaryWriter(Stream s) : base(s) { }
-
-            public override void Flush()
-            {
-                base.Write(ConvertToByte(curByte));
-                base.Flush();
-            }
-
-            public override void Write(bool value)
-            {
-                curByte[curBitIndx] = value;
-                curBitIndx++;
-
-                if (curBitIndx == 8)
-                {
-                    base.Write(ConvertToByte(curByte));
-                    this.curBitIndx = 0;
-                    this.curByte = new bool[8];
-                }
-            }
-
-            private static byte ConvertToByte(bool[] bools)
-            {
-                byte b = 0;
-
-                byte bitIndex = 0;
-                for (int i = 0; i < 8; i++)
-                {
-                    if (bools[i])
-                    {
-                        b |= (byte)(((byte)1) << bitIndex);
-                    }
-                    bitIndex++;
-                }
-
-                return b;
-            }
-        }
-
-        private class BinaryReader : System.IO.BinaryReader
-        {
-            private bool[] curByte = new bool[8];
-            private byte curBitIndx = 0;
-            private BitArray ba;
-
-            public BinaryReader(Stream s) : base(s)
-            {
-                ba = new BitArray(new byte[] { base.ReadByte() });
-                ba.CopyTo(curByte, 0);
-                ba = null;
-            }
-
-            public override bool ReadBoolean()
-            {
-                if (curBitIndx == 8)
-                {
-                    ba = new BitArray(new byte[] { base.ReadByte() });
-                    ba.CopyTo(curByte, 0);
-                    ba = null;
-                    this.curBitIndx = 0;
-                }
-
-                bool b = curByte[curBitIndx];
-                curBitIndx++;
-                return b;
             }
         }
     }
