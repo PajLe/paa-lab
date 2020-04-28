@@ -29,7 +29,7 @@ Za sortiranje uzeti cele brojeve iz opsega 0 do 10000.
 
 Sortirati slučajno generisane nizove od 100, 1000, 10k, 100k, 1M, 10M i 100M elemenata.
 
-## Greedy algoritmi - kompresija (Shannon-Fano, LZW)
+## Lab. 3 - Greedy algoritmi - kompresija (Shannon-Fano, LZW)
 
 Implementirati algoritme za kompresiju podataka koji se mogu podvesti pod kategoriju Greedy algoritama, i uporediti ih po efikasnosti i vremenu izvršenja.
 
