@@ -28,3 +28,13 @@ Implementirati po priloženoj tabeli po tri algoritma za sortiranje i uporediti 
 Za sortiranje uzeti cele brojeve iz opsega 0 do 10000.
 
 Sortirati slučajno generisane nizove od 100, 1000, 10k, 100k, 1M, 10M i 100M elemenata.
+
+## Greedy algoritmi - kompresija (Shannon-Fano, LZW)
+
+Implementirati algoritme za kompresiju podataka koji se mogu podvesti pod kategoriju Greedy algoritama, i uporediti ih po efikasnosti i vremenu izvršenja.
+
+Pripremiti fajlove sa karakterima koji će biti kompresovani.
+
+Treba spremiti dve kategorije fajlova – sa random generisanim karakterima, sa smislenim tekstom na srpskom i smislenim tekstom na engleskom jeziku.
+
+U svakoj kategoriji vam treba po jedan fajl od 100, 1000, 10k, 100k i 1M karaktera. Za slučaj od 100 karaktera prikazati na standardnom izlazu kodnu tabelu i rezultat kompresije. Za sve kategorije potrebno je uraditi i kompresiju i dekompresiju.
