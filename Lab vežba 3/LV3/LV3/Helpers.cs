@@ -52,11 +52,22 @@ namespace LV3
         private System.Collections.BitArray ba;
 
         public BinaryWriter(Stream s) : base(s) { }
+        public BinaryWriter(Stream s, Encoding e) : base(s, e) { }
 
         public override void Flush()
         {
             base.Write(ConvertToByte(curByte));
             base.Flush();
+        }
+
+        public override void Write(byte value)
+        {
+            ba = new BitArray(new byte[] { value });
+            for (byte i = 0; i < 8; i++)
+            {
+                this.Write(ba[i]);
+            }
+            ba = null;
         }
 
         public override void Write(bool value)
@@ -112,6 +123,28 @@ namespace LV3
             ba = new BitArray(new byte[] { base.ReadByte() });
             ba.CopyTo(curByte, 0);
             ba = null;
+        }
+
+        public override byte ReadByte()
+        {
+            bool[] bar = new bool[8];
+            byte i;
+            for (i = 0; i < 8; i++)
+            {
+                bar[i] = this.ReadBoolean();
+            }
+
+            byte b = 0;
+            byte bitIndex = 0;
+            for (i = 0; i < 8; i++)
+            {
+                if (bar[i])
+                {
+                    b |= (byte)(((byte)1) << bitIndex);
+                }
+                bitIndex++;
+            }
+            return b;
         }
 
         public uint ReadUintBits(uint numOfBits)
@@ -206,6 +239,7 @@ namespace LV3
             while (x != null && i < query.Length)
             {
                 char c = query[i];
+                //if (c > 383) return "?";
                 if (c < x.c) x = x.left;
                 else if (c > x.c) x = x.right;
                 else
