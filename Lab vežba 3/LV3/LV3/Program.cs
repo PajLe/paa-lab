@@ -16,13 +16,13 @@ namespace LV3
             string baseWriteRoute = "../../../../results/";
             Stopwatch s = new Stopwatch();
 
-            FileRepo.GenerateAsciiFile("random-100.txt", 100);
+            /*FileRepo.GenerateAsciiFile("random-100.txt", 100);
             FileRepo.GenerateAsciiFile("random-1k.txt", 1000);
             FileRepo.GenerateAsciiFile("random-10k.txt", 10000);
             FileRepo.GenerateAsciiFile("random-100k.txt", 100000);
             FileRepo.GenerateAsciiFile("random-1m.txt", 1000000);*/
 
-            /*Console.WriteLine("sf mladic-100.txt");
+            Console.WriteLine("sf mladic-100.txt");
             Console.WriteLine("mladic-100.txt code table:");
             s.Start();
             ShannonFano sf_mladic100 = new ShannonFano(baseSourceRoute + "mladic-100.txt", baseWriteRoute + "sf/" + "mladic-100-sf.txt");
