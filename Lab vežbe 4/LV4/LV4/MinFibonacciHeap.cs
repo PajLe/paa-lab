@@ -10,9 +10,13 @@ namespace LV4
     {
         private FNode head; // head of the root list
         private FNode HMin; // node with Min key 
+        private int Hn;     // number of nodes in the heap
         private int tH;     // number of trees in root list
         private int mH;     // number of marked nodes in the heap
-        private int Hn;     // number of nodes in the heap
+
+        private FNode Head { get => head; }
+        private FNode Min { get => HMin; }
+        public int Size { get => Hn; }
 
         private class FNode
         {
@@ -27,7 +31,7 @@ namespace LV4
 
         public MinFibonacciHeap() { }
 
-        public void Insert(int key)
+        public void Insert(int key) // insert type == key type
         {
             FNode toAdd = new FNode();
             toAdd.Key = key;
@@ -52,16 +56,40 @@ namespace LV4
             Hn++;
         }
 
+        public int PeekMin() // return type == key type
+        {
+            return HMin.Key;
+        }
+
+        public void Union(MinFibonacciHeap h2)
+        {
+            FNode thisLast = this.head.Left;
+            FNode h2Last = h2.Head.Left;
+
+            thisLast.Right = h2.Head;
+            h2Last.Right = this.head;
+
+            this.head.Left = h2Last;
+            h2.Head.Left = thisLast;
+
+            if (h2.Min.Key < this.HMin.Key)
+                this.HMin = h2.Min;
+
+            Hn += h2.Size;
+        }
+
         public override string ToString()
         {
             StringBuilder s = new StringBuilder();
 
             FNode current = head;
-            for (int i = 0; i < Hn; i++)
+            for (int i = 0; i < Hn - 1; i++)
             {
                 s.Append(current.Key + "<-->");
                 current = current.Right;
             }
+
+            s.Append(current.Key);
 
             return s.ToString();
         }
