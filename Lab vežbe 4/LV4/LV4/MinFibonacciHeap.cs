@@ -8,14 +8,11 @@ namespace LV4
 {
     class MinFibonacciHeap
     {
-        private FNode head; // head of the root list
         private FNode HMin; // node with Min key 
         private int Hn;     // number of nodes in the heap
         private int tH;     // number of trees in root list
         private int mH;     // number of marked nodes in the heap
-        private Dictionary<int, FNode> A;
 
-        private FNode Head { get => head; }
         private FNode Min { get => HMin; }
         public int Size { get => Hn; }
 
@@ -36,7 +33,6 @@ namespace LV4
         {
             FNode toAdd = new FNode();
             toAdd.Key = key;
-            toAdd.Degree = 0;
             Insert(toAdd);
         }
 
@@ -47,15 +43,14 @@ namespace LV4
                 toAdd.Left = toAdd;
                 toAdd.Right = toAdd;
 
-                head = toAdd;
                 HMin = toAdd;
             }
             else // add to the end of the root list
             {
-                toAdd.Left = head.Left; // toAdd.Left is previously-last node
-                head.Left.Right = toAdd; // previously-last's Right now points to new node (toAdd)
-                head.Left = toAdd; // head.Left points to a new-last (toAdd)
-                toAdd.Right = head; // toAdd is now last, its Right is head
+                toAdd.Left = HMin.Left; // toAdd.Left is previously-last node
+                HMin.Left.Right = toAdd; // previously-last's Right now points to the new node (toAdd)
+                HMin.Left = toAdd; // head.Left points to a new-last (toAdd)
+                toAdd.Right = HMin; // toAdd is now last, its Right is head
                 if (toAdd.Key < HMin.Key)
                     HMin = toAdd;
             }
@@ -70,19 +65,20 @@ namespace LV4
 
         public void Union(MinFibonacciHeap h2)
         {
-            FNode thisLast = this.head.Left;
-            FNode h2Last = h2.Head.Left;
+            FNode thisLast = this.HMin.Left;
+            FNode h2Last = h2.HMin.Left;
 
-            thisLast.Right = h2.Head;
-            h2Last.Right = this.head;
+            thisLast.Right = h2.HMin;
+            h2Last.Right = this.HMin;
 
-            this.head.Left = h2Last;
-            h2.Head.Left = thisLast;
+            this.HMin.Left = h2Last;
+            h2.HMin.Left = thisLast;
 
             if (h2.Min.Key < this.HMin.Key)
                 this.HMin = h2.Min;
 
             Hn += h2.Size;
+            tH += h2.tH;
         }
 
         public int? ExtractMin()
@@ -90,15 +86,25 @@ namespace LV4
             FNode z = HMin;
             if (z != null)
             {
-                // add each child to the root list
-                FNode current = z.Child;
-                for (int i = 0; i < z.Degree; i++)
+                // merge childs of 'z' with the root list
+                FNode child = z.Child;
+                if (z.Degree > 0)
                 {
-                    Insert(current);
-                    current.Parent = null;
-                    current = current.Right;
-                    tH++;
+                    if (z.Degree == 1)
+                        Insert(z.Child); // probably removable
+                    else
+                    {
+                        FNode childLast = child.Left;
+                        FNode thisLast = this.HMin.Left;
+
+                        thisLast.Right = child;
+                        childLast.Right = this.HMin;
+
+                        this.HMin.Left = childLast;
+                        child.Left = thisLast;
+                    }
                 }
+                tH += z.Degree;
 
                 // remove z from the root list
                 z.Left.Right = z.Right;
@@ -121,7 +127,7 @@ namespace LV4
 
         private void Consolidate()
         {
-            A = new Dictionary<int, FNode>();
+            Dictionary<int, FNode> A = new Dictionary<int, FNode>();
             FNode current = HMin;
             for (int i = 0; i < tH; i++)
             {
@@ -140,12 +146,11 @@ namespace LV4
                     A.Remove(d);
                     d++;
                     tH--; // move to Link maybe?
+                    i--;
                 }
                 A.Add(d, x);
             }
-            A.Add(current.Degree, current);
             HMin = null;
-            head = null;
             tH = 0;
             foreach (FNode node in A.Values)
                 Insert(node);
@@ -160,9 +165,9 @@ namespace LV4
 
             if (parent.Degree == 0)
             {
-                parent.Child = child;
                 child.Left = child;
                 child.Right = child;
+                parent.Child = child;
             }
             else
             {
@@ -178,7 +183,7 @@ namespace LV4
         {
             StringBuilder s = new StringBuilder();
 
-            FNode current = head;
+            FNode current = HMin;
             for (int i = 0; i < tH - 1; i++)
             {
                 s.Append(current.Key + "<-->");
