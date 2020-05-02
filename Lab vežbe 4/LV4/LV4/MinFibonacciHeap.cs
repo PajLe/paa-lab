@@ -90,19 +90,14 @@ namespace LV4
                 FNode child = z.Child;
                 if (z.Degree > 0)
                 {
-                    if (z.Degree == 1)
-                        Insert(z.Child); // probably removable
-                    else
-                    {
-                        FNode childLast = child.Left;
-                        FNode thisLast = this.HMin.Left;
+                    FNode childLast = child.Left;
+                    FNode thisLast = this.HMin.Left;
 
-                        thisLast.Right = child;
-                        childLast.Right = this.HMin;
+                    thisLast.Right = child;
+                    childLast.Right = this.HMin;
 
-                        this.HMin.Left = childLast;
-                        child.Left = thisLast;
-                    }
+                    this.HMin.Left = childLast;
+                    child.Left = thisLast;
                 }
                 tH += z.Degree;
 
@@ -110,6 +105,7 @@ namespace LV4
                 z.Left.Right = z.Right;
                 z.Right.Left = z.Left;
                 tH--;
+                Hn--;
                 if (z == z.Right)
                     HMin = null;
                 else
@@ -117,7 +113,6 @@ namespace LV4
                     HMin = z.Right;
                     Consolidate();
                 }
-                Hn--;
             }
             else
                 return null;
@@ -153,7 +148,10 @@ namespace LV4
             HMin = null;
             tH = 0;
             foreach (FNode node in A.Values)
+            {
                 Insert(node);
+                Hn--; // since Insert will increase it and we're not adding new nodes
+            }
         }
 
         private void Link(FNode parent, FNode child)
@@ -184,15 +182,57 @@ namespace LV4
             StringBuilder s = new StringBuilder();
 
             FNode current = HMin;
+            if (current == null)
+                return "Empty";
+
             for (int i = 0; i < tH - 1; i++)
             {
-                s.Append(current.Key + "<-->");
+                s.Append(current.Key);
+                if (current.Degree > 0)
+                {
+                    s.Append("(");
+                    s.Append(Siblings(current.Child, current.Degree));
+                    s.Append(")");
+                }
+                s.Append("<-->");
                 current = current.Right;
             }
 
             s.Append(current.Key);
+            if (current.Degree > 0)
+            {
+                s.Append("(");
+                s.Append(Siblings(current.Child, current.Degree));
+                s.Append(")");
+            }
 
             return s.ToString();
+        }
+
+        private StringBuilder Siblings(FNode node, int siblingCount)
+        {
+            StringBuilder s = new StringBuilder();
+            for (int i = 0; i < siblingCount - 1; i++)
+            {
+                s.Append(node.Key);
+                if (node.Degree > 0)
+                {
+                    s.Append("(");
+                    s.Append(Siblings(node.Child, node.Degree));
+                    s.Append(")");
+                }
+                s.Append(", ");
+                node = node.Right;
+            }
+
+            s.Append(node.Key);
+            if (node.Degree > 0)
+            {
+                s.Append("(");
+                s.Append(Siblings(node.Child, node.Degree));
+                s.Append(")");
+            }
+            return s;
         }
     }
 }
