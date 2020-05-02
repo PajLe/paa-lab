@@ -281,5 +281,11 @@ namespace LV4
             node.Marked = false;
             Insert(node);
         }
+
+        public void Delete(FNode node)
+        {
+            DecreaseKey(node, int.MinValue);
+            ExtractMin();
+        }
     }
 }
