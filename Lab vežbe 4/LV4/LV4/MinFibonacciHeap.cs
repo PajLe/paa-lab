@@ -13,6 +13,7 @@ namespace LV4
         private int Hn;     // number of nodes in the heap
         private int tH;     // number of trees in root list
         private int mH;     // number of marked nodes in the heap
+        private Dictionary<int, FNode> A;
 
         private FNode Head { get => head; }
         private FNode Min { get => HMin; }
@@ -36,6 +37,11 @@ namespace LV4
             FNode toAdd = new FNode();
             toAdd.Key = key;
             toAdd.Degree = 0;
+            Insert(toAdd);
+        }
+
+        private void Insert(FNode toAdd)
+        {
             if (HMin == null)
             {
                 toAdd.Left = toAdd;
@@ -54,6 +60,7 @@ namespace LV4
                     HMin = toAdd;
             }
             Hn++;
+            tH++;
         }
 
         public int PeekMin() // return type == key type
@@ -78,12 +85,101 @@ namespace LV4
             Hn += h2.Size;
         }
 
+        public int? ExtractMin()
+        {
+            FNode z = HMin;
+            if (z != null)
+            {
+                // add each child to the root list
+                FNode current = z.Child;
+                for (int i = 0; i < z.Degree; i++)
+                {
+                    Insert(current);
+                    current.Parent = null;
+                    current = current.Right;
+                    tH++;
+                }
+
+                // remove z from the root list
+                z.Left.Right = z.Right;
+                z.Right.Left = z.Left;
+                tH--;
+                if (z == z.Right)
+                    HMin = null;
+                else
+                {
+                    HMin = z.Right;
+                    Consolidate();
+                }
+                Hn--;
+            }
+            else
+                return null;
+
+            return z.Key;
+        }
+
+        private void Consolidate()
+        {
+            A = new Dictionary<int, FNode>();
+            FNode current = HMin;
+            for (int i = 0; i < tH; i++)
+            {
+                FNode x = current;
+                int d = x.Degree;
+                current = current.Right;
+                while(A.ContainsKey(d))
+                {
+                    FNode y = A[d];
+                    if (x.Key > y.Key)
+                    {
+                        Link(y, x);
+                        x = y;
+                    }
+                    else Link(x, y);
+                    A.Remove(d);
+                    d++;
+                    tH--; // move to Link maybe?
+                }
+                A.Add(d, x);
+            }
+            A.Add(current.Degree, current);
+            HMin = null;
+            head = null;
+            tH = 0;
+            foreach (FNode node in A.Values)
+                Insert(node);
+        }
+
+        private void Link(FNode parent, FNode child)
+        {
+            child.Left.Right = child.Right;
+            child.Right.Left = child.Left;
+            child.Parent = parent;
+            child.Marked = false;
+
+            if (parent.Degree == 0)
+            {
+                parent.Child = child;
+                child.Left = child;
+                child.Right = child;
+            }
+            else
+            {
+                parent.Child.Left.Right = child;
+                child.Left = parent.Child.Left;
+                child.Right = parent.Child;
+                parent.Child.Left = child;
+            }
+            parent.Degree++;
+        }
+
         public override string ToString()
         {
             StringBuilder s = new StringBuilder();
 
             FNode current = head;
-            for (int i = 0; i < Hn - 1; i++)
+            for (int i = 0; i < tH - 1; i++)
             {
                 s.Append(current.Key + "<-->");
                 current = current.Right;
