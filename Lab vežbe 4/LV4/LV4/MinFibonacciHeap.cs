@@ -11,12 +11,12 @@ namespace LV4
         private FNode HMin; // node with Min key 
         private int Hn;     // number of nodes in the heap
         private int tH;     // number of trees in root list
-        private int mH;     // number of marked nodes in the heap
+        private int mH;     // number of marked nodes in the heap - NOT USED
 
         private FNode Min { get => HMin; }
         public int Size { get => Hn; }
 
-        private class FNode
+        public class FNode
         {
             public int Key { get; set; }
             public FNode Parent { get; set; }
@@ -34,6 +34,17 @@ namespace LV4
             FNode toAdd = new FNode();
             toAdd.Key = key;
             Insert(toAdd);
+            Hn++;
+        }
+
+        public void InsertNode(FNode toAdd)
+        {
+            toAdd.Degree = 0;
+            toAdd.Parent = null;
+            toAdd.Child = null;
+            toAdd.Marked = false;
+            Insert(toAdd);
+            Hn++;
         }
 
         private void Insert(FNode toAdd)
@@ -54,7 +65,6 @@ namespace LV4
                 if (toAdd.Key < HMin.Key)
                     HMin = toAdd;
             }
-            Hn++;
             tH++;
         }
 
@@ -148,10 +158,7 @@ namespace LV4
             HMin = null;
             tH = 0;
             foreach (FNode node in A.Values)
-            {
                 Insert(node);
-                Hn--; // since Insert will increase it and we're not adding new nodes
-            }
         }
 
         private void Link(FNode parent, FNode child)
@@ -233,6 +240,46 @@ namespace LV4
                 s.Append(")");
             }
             return s;
+        }
+
+        public void DecreaseKey(FNode node, int key)
+        {
+            if (key >= node.Key)
+                throw new ArgumentException("New key has to be smaller than the current key.");
+            node.Key = key;
+            FNode y = node.Parent;
+            if(y != null && node.Key < y.Key)
+            {
+                Cut(node, y);
+                CasadingCut(y);
+            }
+            if (node.Key < HMin.Key)
+                HMin = node;
+        }
+
+        private void CasadingCut(FNode y)
+        {
+            FNode z = y.Parent;
+            if (z != null)
+            {
+                if (y.Marked == false)
+                    y.Marked = true;
+                else
+                {
+                    Cut(y, z);
+                    CasadingCut(z);
+                }
+            }
+        }
+
+        private void Cut(FNode node, FNode y)
+        {
+            node.Left.Right = node.Right;
+            node.Right.Left = node.Left;
+            y.Degree--;
+            node.Parent = null;
+            node.Marked = false;
+            Insert(node);
         }
     }
 }
