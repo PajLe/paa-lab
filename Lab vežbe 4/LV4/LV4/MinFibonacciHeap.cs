@@ -6,6 +6,17 @@ using System.Threading.Tasks;
 
 namespace LV4
 {
+    public class FNode
+    {
+        public int Key { get; set; }
+        public FNode Parent { get; set; }
+        public FNode Left { get; set; }
+        public FNode Right { get; set; }
+        public FNode Child { get; set; }
+        public int Degree { get; set; }
+        public bool Marked { get; set; }
+    }
+
     class MinFibonacciHeap
     {
         private FNode HMin; // node with Min key 
@@ -16,16 +27,6 @@ namespace LV4
         private FNode Min { get => HMin; }
         public int Size { get => Hn; }
 
-        public class FNode
-        {
-            public int Key { get; set; }
-            public FNode Parent { get; set; }
-            public FNode Left { get; set; }
-            public FNode Right { get; set; }
-            public FNode Child { get; set; }
-            public int Degree { get; set; }
-            public bool Marked { get; set; }
-        }
 
         public MinFibonacciHeap() { }
 
@@ -91,7 +92,7 @@ namespace LV4
             tH += h2.tH;
         }
 
-        public int? ExtractMin()
+        public FNode ExtractMin()
         {
             FNode z = HMin;
             if (z != null)
@@ -124,10 +125,10 @@ namespace LV4
                     Consolidate();
                 }
             }
-            else
-                return null;
+            // else
+            //    return null;
 
-            return z.Key;
+            return z;
         }
 
         private void Consolidate()
@@ -184,7 +185,7 @@ namespace LV4
             parent.Degree++;
         }
 
-        public override string ToString()
+        /*public override string ToString()
         {
             StringBuilder s = new StringBuilder();
 
@@ -214,7 +215,7 @@ namespace LV4
             }
 
             return s.ToString();
-        }
+        }*/
 
         private StringBuilder Siblings(FNode node, int siblingCount)
         {
@@ -245,7 +246,7 @@ namespace LV4
         public void DecreaseKey(FNode node, int key)
         {
             if (key >= node.Key)
-                throw new ArgumentException("New key has to be smaller than the current key.");
+                throw new ArgumentException("New key has to be smaller than the current key: ");
             node.Key = key;
             FNode y = node.Parent;
             if(y != null && node.Key < y.Key)
@@ -276,16 +277,18 @@ namespace LV4
         {
             node.Left.Right = node.Right;
             node.Right.Left = node.Left;
+            y.Child = node.Right;
             y.Degree--;
             node.Parent = null;
             node.Marked = false;
             Insert(node);
         }
 
-        public void Delete(FNode node)
+        public FNode Delete(FNode node)
         {
             DecreaseKey(node, int.MinValue);
-            ExtractMin();
+            FNode deleted = ExtractMin();
+            return deleted;
         }
     }
 }
