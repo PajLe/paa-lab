@@ -185,7 +185,7 @@ namespace LV4
             parent.Degree++;
         }
 
-        /*public override string ToString()
+        public override string ToString()
         {
             StringBuilder s = new StringBuilder();
 
@@ -215,7 +215,7 @@ namespace LV4
             }
 
             return s.ToString();
-        }*/
+        }
 
         private StringBuilder Siblings(FNode node, int siblingCount)
         {
