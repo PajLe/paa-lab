@@ -17,8 +17,9 @@ namespace LV4
             MinFibonacciHeap fbh_10 = new MinFibonacciHeap();
             int[] items = FileRepo.ReadNumberFile(baseSourceRoute + "10.txt");
             Test(fbh_10, items);
+            Console.WriteLine(fbh_10);
 
-            // Fibonacci heap with 100 items
+            /*// Fibonacci heap with 100 items
             MinFibonacciHeap fbh_100 = new MinFibonacciHeap();
             items = FileRepo.ReadNumberFile(baseSourceRoute + "100.txt");
             Test(fbh_100, items);
@@ -36,7 +37,7 @@ namespace LV4
             // Fibonacci heap with 100k items
             MinFibonacciHeap fbh_100k = new MinFibonacciHeap();
             items = FileRepo.ReadNumberFile(baseSourceRoute + "100k.txt");
-            Test(fbh_100k, items);
+            Test(fbh_100k, items);*/
         }
 
         public static void Test(MinFibonacciHeap heap, int[] items)
@@ -59,6 +60,8 @@ namespace LV4
                 addedNodes.Add(toAdd);
             }
 
+            Console.WriteLine(heap);
+
             Console.WriteLine("ExtractMin() 10%:");
             // Extract min 10%
             for (int i = 0; i < items.Length / 10; i++)
@@ -72,6 +75,7 @@ namespace LV4
 
                 addedNodes.Remove(toRemove);
             }
+            Console.WriteLine(heap);
             Console.Write("________________________");
             Console.Write("Total: " + extract + "\n\n");
 
@@ -99,6 +103,7 @@ namespace LV4
                 decrease = decrease.Add(s.Elapsed);
                 s.Reset();
             }
+            Console.WriteLine(heap);
             Console.Write("________________________");
             Console.Write("Total: " + decrease + "\n\n");
 
@@ -118,6 +123,7 @@ namespace LV4
 
                 addedNodes.Remove(toDelete);
             }
+            Console.WriteLine(heap);
             Console.Write("________________________");
             Console.Write("Total: " + delete + "\n\n");
 

@@ -38,3 +38,27 @@ Pripremiti fajlove sa karakterima koji će biti kompresovani.
 Treba spremiti dve kategorije fajlova – sa random generisanim karakterima, sa smislenim tekstom na srpskom i smislenim tekstom na engleskom jeziku.
 
 U svakoj kategoriji vam treba po jedan fajl od 100, 1000, 10k, 100k i 1M karaktera. Za slučaj od 100 karaktera prikazati na standardnom izlazu kodnu tabelu i rezultat kompresije. Za sve kategorije potrebno je uraditi i kompresiju i dekompresiju.
+
+## Lab. 4 - Poređenje performansi HEAP struktura
+
+Implementirati Fibonačijev hip.
+
+Za vrednosti čvorova uzeti cele brojeve iz opsega 0 do 10000.
+
+Testirati ponašanje struktura za slučajno generisane nizove vrednosti od 10, 100, 1000, 10k i 100k elemenata i pratiti vreme izvršenja svake operacije.
+
+Nakon generisanja strukture, testiranje sprovesti nad sledećom sekvencom akcija:
+
+- Extract-min za random 10% elemenata
+
+- Decrease-key za random 10% elemenata
+
+- Delete node za random 10% elemenata
+
+- Add za novih 10% elemenata
+
+## Lab. 5 - B stabla
+
+Implementirati B stablo.
+
+Uporediti performanse stabla za različite maksimalne brojeve vrednosti po čvoru: 3, 5, 10, 33, 101, 333 i 1001.Testirati dodavanje, brisanje, traženje i intervalno traženje (’between and’) nad stablima koja imaju 100, 1000, 10k, 100k i 1M čvorova. Broj proba po testu treba da bude 10% od broja čvorova u inicijalnom stablu. Vrednosti koje se čuvaju u čvorovima treba da budu prirodni brojevi.
