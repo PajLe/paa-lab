@@ -102,6 +102,8 @@ namespace LV5
         private void SplitChild(BTreeNode node, int index)
         {
             BTreeNode z = new BTreeNode();
+            z.Children = new BTreeNode[2 * t];
+            z.Keys = new int[2 * t - 1];
             BTreeNode y = node.Children[index];
             z.IsLeaf = y.IsLeaf;
             z.KeyCount = t - 1;
@@ -251,6 +253,37 @@ namespace LV5
                 }
                 Delete(node.Children[i], key);
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder s = new StringBuilder();
+            Print(root, s, 1);
+            return s.ToString();
+        }
+
+        private void Print(BTreeNode node, StringBuilder s, int depth)
+        {
+            if (node == null) return;
+            int i;
+            for (i = 0; i < node.KeyCount - 1; i++)
+            {
+                s.Append((char)node.Keys[i]);
+                s.Append("-");
+            }
+            s.Append((char)node.Keys[i]);
+            s.Append("(\n");
+            for (int j = 0; j < node.KeyCount + 1; j++)
+            {
+                if (node.Children[j] == null) break;
+                for (int k = 0; k < depth; k++) 
+                    s.Append("\t");
+                Print(node.Children[j], s, depth + 1);
+                s.Append("\n");
+            }
+            for (int k = 0; k < depth - 1; k++) 
+                s.Append("\t");
+            s.Append(")");
         }
     }
 }
