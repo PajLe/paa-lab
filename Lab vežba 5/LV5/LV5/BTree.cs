@@ -18,6 +18,23 @@ namespace LV5
     {
         public BTreeNode Node { get; set; }
         public int Index { get; set; }
+
+        public override string ToString()
+        {
+            StringBuilder s = new StringBuilder();
+            s.Append('(');
+            int i;
+            for (i = 0; i < Node.KeyCount - 1; i++)
+            {
+                s.Append((char)Node.Keys[i]);
+                s.Append(", ");
+            }
+            s.Append((char)Node.Keys[i]);
+            s.Append(')');
+            s.Append(" | ");
+            s.Append((char)Node.Keys[Index]);
+            return s.ToString();
+        }
     }
 
     class BTree
@@ -130,11 +147,13 @@ namespace LV5
 
         public void Delete(int key)
         {
-            Delete(root, key);
+            if (Search(key) != null)
+                Delete(root, key);
         }
 
         private void Delete(BTreeNode node, int key)
         {
+            if (node == null) return;
             int i = 0;
             while (i < node.KeyCount && key > node.Keys[i])
                 i++;
@@ -142,8 +161,16 @@ namespace LV5
             {
                 if (node.IsLeaf) // case 1
                 {
-                    node.Keys = node.Keys.Where((k, keyIndex) => i != keyIndex).ToArray();
+                    for (int j = i; j < node.KeyCount - 1; j++)
+                        node.Keys[j] = node.Keys[j + 1];
                     node.KeyCount--;
+                    if (node.KeyCount == 0) // if tree was just emptied
+                    {
+                        root = new BTreeNode();
+                        root.IsLeaf = true;
+                        root.Keys = new int[2 * t - 1];
+                        root.Children = new BTreeNode[2 * t];
+                    }
                 }
                 else // case 2
                 {
@@ -198,10 +225,13 @@ namespace LV5
                     if (i - 1 > -1 && node.Children[i - 1].KeyCount >= t) // left sibling - case 3a
                     {
                         // move key from parent to child
-                        node.Children[i].Keys[node.Children[i].KeyCount++] = node.Keys[i];
+                        for (int j = node.Children[i].KeyCount; j > 0; j--)
+                            node.Children[i].Keys[j] = node.Children[i].Keys[j - 1];
+                        node.Children[i].Keys[0] = node.Keys[i - 1];
+                        node.Children[i].KeyCount++;
 
                         // move rightmost key of left child to parent
-                        node.Keys[i] = node.Children[i - 1].Keys[node.Children[i - 1].KeyCount - 1]; 
+                        node.Keys[i - 1] = node.Children[i - 1].Keys[node.Children[i - 1].KeyCount - 1]; 
 
                         // move children of ci to the right in order to make place for a new child
                         for (int j = node.Children[i].KeyCount; j > 0; j--)
@@ -210,6 +240,8 @@ namespace LV5
 
                         // remove c(i-1)'s rightmost key and child
                         node.Children[i - 1].KeyCount--;
+
+                        Delete(node.Children[i], key);
                     }
                     else if (i + 1 <= node.KeyCount && node.Children[i + 1].KeyCount >= t) // right sibling - case 3a
                     {
@@ -230,18 +262,31 @@ namespace LV5
                         }
                         node.Children[i + 1].Children[node.Children[i + 1].KeyCount - 1] = node.Children[i + 1].Children[node.Children[i + 1].KeyCount];
                         node.Children[i + 1].KeyCount--;
+
+                        Delete(node.Children[i], key);
                     }
                     else // both siblings have t-1 keys - case 3b
                     {
-                        BTreeNode y = node.Children[i];
-                        BTreeNode z = node.Children[i + 1];
-                        // merge parent key with ci
-                        y.Keys[y.KeyCount++] = node.Keys[i];
-                        node.KeyCount--;
-                        if (node == root && node.KeyCount == 0)
-                            root = y;
+                        BTreeNode y;
+                        BTreeNode z;
+                        int zIndex;
+                        // merge parent key with y
+                        if (i + 1 <= node.KeyCount)
+                        {
+                            y = node.Children[i];
+                            z = node.Children[i + 1];
+                            y.Keys[y.KeyCount++] = node.Keys[i];
+                            zIndex = i + 1;
+                        }
+                        else
+                        {
+                            y = node.Children[i - 1];
+                            z = node.Children[i];
+                            y.Keys[y.KeyCount++] = node.Keys[i - 1];
+                            zIndex = i;
+                        }
 
-                        // merge c(i+1) with ci
+                        // merge z with y
                         for (int j = y.KeyCount; j < y.KeyCount + z.KeyCount; j++)
                         {
                             y.Keys[j] = z.Keys[j - y.KeyCount];
@@ -249,9 +294,24 @@ namespace LV5
                         }
                         y.KeyCount += z.KeyCount;
                         y.Children[y.KeyCount] = z.Children[z.KeyCount];
+
+                        // remove z from node's children
+                        for (int j = zIndex; j < node.KeyCount; j++)
+                            node.Children[j] = node.Children[j + 1];
+
+                        // remove taken key from node
+                        for (int j = i; j < node.KeyCount - 1; j++)
+                            node.Keys[j] = node.Keys[j + 1];
+                        node.KeyCount--;
+
+                        if (node == root && node.KeyCount == 0)
+                            root = y;
+
+                        Delete(y, key);
                     }
                 }
-                Delete(node.Children[i], key);
+                else
+                    Delete(node.Children[i], key);
             }
         }
 
