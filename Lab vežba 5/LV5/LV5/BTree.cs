@@ -33,6 +33,40 @@ namespace LV5
             s.Append(')');
             s.Append(" | ");
             s.Append((char)Node.Keys[Index]);
+            s.Append(", [");
+            s.Append(Index);
+            s.Append(']');
+            return s.ToString();
+        }
+    }
+
+    public class IntervalSearchResult
+    {
+        public BTreeNode Node { get; set; }
+        public int IndexFrom { get; set; }
+        public int IndexTo { get; set; }
+
+        public override string ToString()
+        {
+            StringBuilder s = new StringBuilder();
+            s.Append('(');
+            int i;
+            for (i = 0; i < Node.KeyCount - 1; i++)
+            {
+                s.Append((char)Node.Keys[i]);
+                s.Append(", ");
+            }
+            s.Append((char)Node.Keys[i]);
+            s.Append(')');
+            s.Append(" | ");
+            s.Append((char)Node.Keys[IndexFrom]);
+            s.Append(" - ");
+            s.Append((char)Node.Keys[IndexTo]);
+            s.Append(", [");
+            s.Append(IndexFrom);
+            s.Append(" - ");
+            s.Append(IndexTo);
+            s.Append(']');
             return s.ToString();
         }
     }
@@ -63,6 +97,40 @@ namespace LV5
                 return null;
             else
                 return Search(node.Children[i], key);
+        }
+
+        public IntervalSearchResult IntervalSearch(int fromKey, int toKey)
+        {
+            return IntervalSearch(root, fromKey, toKey);
+        }
+
+        private IntervalSearchResult IntervalSearch(BTreeNode node, int fromKey, int toKey)
+        {
+            int i = 0;
+            while (i < node.KeyCount && fromKey > node.Keys[i])
+                i++;
+            if (i < node.KeyCount && fromKey == node.Keys[i])
+            {
+                int j = i + 1;
+                while (j < node.KeyCount && toKey > node.Keys[j])
+                    j++;
+                if (j < node.KeyCount && toKey == node.Keys[j])
+                {
+                    IntervalSearchResult s = new IntervalSearchResult();
+                    s.Node = node;
+                    s.IndexFrom = i;
+                    s.IndexTo = j;
+                    return s;
+                }
+            }
+            if (node.IsLeaf)
+                return null;
+            IntervalSearchResult r = IntervalSearch(node.Children[i++], fromKey, toKey);
+            while (r == null && i < node.KeyCount && fromKey == node.Keys[i])
+                r = IntervalSearch(node.Children[i++], fromKey, toKey);
+            if (i == node.KeyCount && fromKey == node.Keys[i - 1])
+                r = IntervalSearch(node.Children[i], fromKey, toKey);
+            return r;
         }
 
         public BTree(int maxKeysPerNode)
