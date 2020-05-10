@@ -29,10 +29,10 @@ namespace LV5
                 s.Append((char)Node.Keys[i]);
                 s.Append(", ");
             }
-            s.Append((char)Node.Keys[i]);
+            s.Append(Node.Keys[i]); // (char)
             s.Append(')');
             s.Append(" | ");
-            s.Append((char)Node.Keys[Index]);
+            s.Append(Node.Keys[Index]); // (char)
             s.Append(", [");
             s.Append(Index);
             s.Append(']');
@@ -53,15 +53,15 @@ namespace LV5
             int i;
             for (i = 0; i < Node.KeyCount - 1; i++)
             {
-                s.Append((char)Node.Keys[i]);
+                s.Append(Node.Keys[i]); // (char)
                 s.Append(", ");
             }
-            s.Append((char)Node.Keys[i]);
+            s.Append(Node.Keys[i]); // (char)
             s.Append(')');
             s.Append(" | ");
-            s.Append((char)Node.Keys[IndexFrom]);
+            s.Append(Node.Keys[IndexFrom]); // (char)
             s.Append(" - ");
-            s.Append((char)Node.Keys[IndexTo]);
+            s.Append(Node.Keys[IndexTo]); // (char)
             s.Append(", [");
             s.Append(IndexFrom);
             s.Append(" - ");
@@ -396,10 +396,10 @@ namespace LV5
             int i;
             for (i = 0; i < node.KeyCount - 1; i++)
             {
-                s.Append((char)node.Keys[i]);
+                s.Append(node.Keys[i]); // (char)
                 s.Append("-");
             }
-            s.Append((char)node.Keys[i]);
+            s.Append(node.Keys[i]); // (char)
             s.Append("(\n");
             for (int j = 0; j < node.KeyCount + 1; j++)
             {
