@@ -14,7 +14,7 @@ namespace LV5
 
         static void Main(string[] args)
         {
-            /**BTree t = new BTree(5);
+            /*BTree t = new BTree(5);
             
             t.Insert('A');
             t.Insert('C');t.Insert('X');
@@ -55,13 +55,27 @@ namespace LV5
             Console.WriteLine(t.IntervalSearch('S', 'V'));
             Console.WriteLine(t.IntervalSearch('R', 'X'));
             Console.WriteLine(t.IntervalSearch('O', 'Q'));
-            Console.WriteLine(t.IntervalSearch('X', 'X'));*/
+            Console.WriteLine(t.IntervalSearch('X', 'X'));
+            t.Delete('X');
+            Console.WriteLine(t);*/
 
+
+            Console.WriteLine("Testing 100");
             Test(100);
+            Console.WriteLine("\n\n\n_________________\n\n");
+            Console.WriteLine("Testing 1000");
             Test(1000);
+            Console.WriteLine("\n\n\n_________________\n\n");
+            Console.WriteLine("Testing 10000");
             Test(10000);
+            Console.WriteLine("\n\n\n_________________\n\n");
+            Console.WriteLine("Testing 100000");
             Test(100000);
+            Console.WriteLine("\n\n\n_________________\n\n");
+            Console.WriteLine("Testing 1000000");
             Test(1000000);
+            Console.WriteLine("\n\n\n_________________\n\n");
+
         }
 
         public static void Test(int elementsToInsert)

@@ -26,7 +26,7 @@ namespace LV5
             int i;
             for (i = 0; i < Node.KeyCount - 1; i++)
             {
-                s.Append((char)Node.Keys[i]);
+                s.Append(Node.Keys[i]); // (char)
                 s.Append(", ");
             }
             s.Append(Node.Keys[i]); // (char)
@@ -261,7 +261,6 @@ namespace LV5
 
                         // merge key with y
                         y.Keys[y.KeyCount++] = key;
-                        node.KeyCount--;
 
                         // merge z with y
                         for (int j = y.KeyCount; j < y.KeyCount + z.KeyCount; j++)
@@ -273,7 +272,7 @@ namespace LV5
                         y.Children[y.KeyCount] = z.Children[z.KeyCount];
 
                         // remove key from node
-                        for (int j = i; i < node.KeyCount - 1; j++)
+                        for (int j = i; j < node.KeyCount - 1; j++)
                             node.Keys[j] = node.Keys[j + 1];
 
                         // free z from node
@@ -288,7 +287,7 @@ namespace LV5
             }
             else // node doesn't contain key
             {
-                if (node.Children[i].KeyCount == t - 1)
+                if (node.Children[i] != null && node.Children[i].KeyCount == t - 1)
                 {
                     if (i - 1 > -1 && node.Children[i - 1].KeyCount >= t) // left sibling - case 3a
                     {
@@ -346,13 +345,15 @@ namespace LV5
                             y.Keys[y.KeyCount++] = node.Keys[i];
                             zIndex = i + 1;
                         }
-                        else
+                        else if (i - 1 >= 0)
                         {
                             y = node.Children[i - 1];
                             z = node.Children[i];
                             y.Keys[y.KeyCount++] = node.Keys[i - 1];
                             zIndex = i;
                         }
+                        else
+                            return;
 
                         // merge z with y
                         for (int j = y.KeyCount; j < y.KeyCount + z.KeyCount; j++)
@@ -372,8 +373,12 @@ namespace LV5
                             node.Keys[j] = node.Keys[j + 1];
                         node.KeyCount--;
 
-                        if (node == root && node.KeyCount == 0)
-                            root = y;
+                        if (node.KeyCount == 0)
+                        { 
+                            if(node == root)
+                                root = y;
+                            node = null;
+                        }
 
                         Delete(y, key);
                     }
