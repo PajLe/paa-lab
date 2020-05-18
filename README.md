@@ -62,3 +62,14 @@ Nakon generisanja strukture, testiranje sprovesti nad sledećom sekvencom akcija
 Implementirati B stablo.
 
 Uporediti performanse stabla za različite maksimalne brojeve vrednosti po čvoru: 3, 5, 10, 33, 101, 333 i 1001.Testirati dodavanje, brisanje, traženje i intervalno traženje (’between and’) nad stablima koja imaju 100, 1000, 10k, 100k i 1M čvorova. Broj proba po testu treba da bude 10% od broja čvorova u inicijalnom stablu. Vrednosti koje se čuvaju u čvorovima treba da budu prirodni brojevi.
+
+
+## Lab. 6 - Crveno-crna stabla (RBT)
+
+Implementirati Red-black stabla i uporediti performanse izvršavanja operacija za 10, 100, 1000, 10k i 100k čvorova.
+
+Operacije za koje se vrši testiranje su:
+
+    Brisanje 10% random elemenata
+    Pretraga 10% random elemenata
+    Dodavanje novih 10% elemenata
