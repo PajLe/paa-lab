@@ -29,7 +29,7 @@ namespace LV6
             }
         }
 
-        private bool IsRed(RBNode x) { if (x == null) return false; return x.color == RED; }
+        private bool IsRed(RBNode x) { if (x == null) return false; return x.Color == RED; }
 
         private RBNode RotateRight(RBNode h)
         {
@@ -115,7 +115,6 @@ namespace LV6
             if (root != null) root.Color = BLACK;
         }
 
-        // delete the key-value pair with the given key rooted at h
         private RBNode Delete(RBNode h, int key)
         {
             if (key < h.Key)
